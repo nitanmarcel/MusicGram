@@ -1,0 +1,4 @@
+requests
+telethon
+spotipy
+pylast
