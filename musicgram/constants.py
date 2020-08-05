@@ -1,27 +1,26 @@
 # Edit this according to your needs
 # Get api credentials for LastFM at: https://www.last.fm/api/account/create
 # Get api credentials for Spotify at https://developer.spotify.com/dashboard/
+# Get api credentials for Telegram at my.telegram.org
 
 
-# Telegram credentials from my.telegram.org
-# Telegram api id
+# Telegram Credentials
+
 API_ID = 0
 
 # Telegram api hash
-API_HASH = 'a'
+API_HASH = ''
 
 # Your initial last name to which telegram to change when nothing it's playing
 INITIAL_LAST_NAME = ''
 
-# Spotify / LastFM credentials
-
-# If the app should use spotify or LastFM. Defaults to SPOTIFY
+# If the app should use spotify or LastFM. Defaults to spotify (True)
 USE_SPOTIFY = True
 
 # Spotify api id or LastFM api key
-API_KEY = 'a'
+API_KEY = ''
 # Spotify api secret or LastFM api secret
-API_SECRET = 'b'
+API_SECRET = ''
 
 # Change this to your LastFM username if you're using the LastFM
 # credentials, else let it unchanged
@@ -35,6 +34,5 @@ USERNAME = "musicgram"
 REDIRECT_URI = 'http://localhost:8888/callback'
 
 # How many seconds the client should sleep before querying spotify/lastFM
-# For LastFM use 10 or 20 seconds because of a bug that sometimes return false results from the API. // TODO: Fix
-# For Spotify 1 works perfectly.
+
 UPDATE_TIME = 1

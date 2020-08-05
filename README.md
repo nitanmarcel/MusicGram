@@ -7,7 +7,7 @@ A simple python app to sync your telegram profile with your spotify/LastFM accou
  - Make sure you add another profile picture to your account before you start the app. If there are 2 or more profile photos in your account the app will assume the last uploaded photo
     is an album art so it will delete it replacing it with a new one
  - Get your API ID/KEY and API SECRET from the service you want to use [Spotify](https://developer.spotify.com/dashboard/) or [LastFM](https://www.last.fm/api/account/create)
- - If possible use Spotify over Last FM. So far LastFM was sending false returns: Even if a song was playing it would return that there's nothing playing.
+ - Use Spotify over LastFM when possible. Currently the last FM api will
  
 ## How to start!
 
