@@ -35,6 +35,8 @@ class Client:
         if not track:
             return Track()
         song = track['item']
+        if not song:
+            return Track()
         return Track(
             song['id'],
             song['name'],
