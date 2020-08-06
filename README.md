@@ -5,7 +5,7 @@ A simple python app to sync your telegram profile with your spotify/LastFM accou
 ## Before starting!
  - Make sure you have a telegram API KEY and HASH from [here](https://my.telegram.org)
  - Get your API ID/KEY and API SECRET from the service you want to use [Spotify](https://developer.spotify.com/dashboard/) or [LastFM](https://www.last.fm/api/account/create)
- - Use Spotify over LastFM when possible. Currently the last FM api will
+ - Use Spotify over LastFM when possible. LastFM doesn't have a way to tell when a song stops playing so the playing song will be cached for 4-5 minutes. 
  
 ## How to start!
 
