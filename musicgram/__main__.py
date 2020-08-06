@@ -4,6 +4,22 @@ from typing import Union
 from . import constants, last, spotify
 from .telegram import MusicGramTelegramClient
 
+
+def trim(artist, title):
+    res = f"[{title} - {artist}]"
+    if len(res) > 59:
+        if round(len(title) / 2) + len(" - ") + len(artist) < 59:
+            trim_len = round(len(title) / 2)
+            title = title[:trim_len] + "..."
+            return f"[{title} - {artist}]"
+        elif len(title) + len(" - ") + round(len(artist) / 2) < 59:
+            trim_len = round(len(artist) / 2)
+            artist = artist[:trim_len] + "..."
+            return f"[{title} - {artist}]"
+    else:
+        return res
+
+
 def main():
     if constants.USE_SPOTIFY:
         client: Union[last.Client, spotify.Client] = spotify.Client(
@@ -28,11 +44,7 @@ def main():
         while True:
             track = client.get_current_track()
             if track.playing:
-                new_last_name = f"{track.title} - {track.artist}"
-                if len(new_last_name) > 62:
-                    new_last_name = new_last_name[:62]
-                    new_last_name = re.sub(new_last_name[-3:], "...", new_last_name)
-                new_last_name = f"[{new_last_name}]"
+                new_last_name = trim(track.artist, track.title)
                 telegram.update_profile_photo(tg_client, track.cover, len_profile_photos)
                 telegram.update_profile_last_name(tg_client, new_last_name)
                 client.wait_for_new_track(track.id)
@@ -40,6 +52,8 @@ def main():
                 telegram.update_profile_photo(tg_client, initial_photo_len=len_profile_photos)
                 telegram.update_profile_last_name(tg_client, initial_last_name)
                 client.wait_for_track_play()
+
+
 
 if __name__ == "__main__":
     main()
