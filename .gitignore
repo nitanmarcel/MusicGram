@@ -142,3 +142,5 @@ cython_debug/
 /musicgram.session
 /.cache-spotyton
 /.idea
+/musicgram.db
+/.cache-*

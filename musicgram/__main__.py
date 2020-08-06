@@ -1,8 +1,8 @@
+import re
 from typing import Union
 
 from . import constants, last, spotify
 from .telegram import MusicGramTelegramClient
-
 
 def main():
     if constants.USE_SPOTIFY:
@@ -24,21 +24,22 @@ def main():
         api_hash=constants.API_HASH)
     with telegram.client as tg_client:
         client.init()
+        initial_last_name, len_profile_photos = telegram.save_profile()
         while True:
             track = client.get_current_track()
             if track.playing:
-                LAST_NAME = f"[{track.title} - {track.artist}]"
-                telegram.update_profile_photo(tg_client, track.cover)
-                telegram.update_profile_last_name(tg_client, LAST_NAME)
+                new_last_name = f"{track.title} - {track.artist}"
+                if len(new_last_name) > 62:
+                    new_last_name = new_last_name[:62]
+                    new_last_name = re.sub(new_last_name[-3:], "...", new_last_name)
+                new_last_name = f"[{new_last_name}]"
+                telegram.update_profile_photo(tg_client, track.cover, len_profile_photos)
+                telegram.update_profile_last_name(tg_client, new_last_name)
                 client.wait_for_new_track(track.id)
             else:
-                telegram.update_profile_photo(tg_client)
-                telegram.update_profile_last_name(
-                    tg_client, "", constants.INITIAL_LAST_NAME)
+                telegram.update_profile_photo(tg_client, initial_photo_len=len_profile_photos)
+                telegram.update_profile_last_name(tg_client, initial_last_name)
                 client.wait_for_track_play()
-
-        print("Done waiting")
-
 
 if __name__ == "__main__":
     main()

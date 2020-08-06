@@ -11,9 +11,6 @@ API_ID = 0
 # Telegram api hash
 API_HASH = ''
 
-# Your initial last name to which telegram to change when nothing it's playing
-INITIAL_LAST_NAME = ''
-
 # If the app should use spotify or LastFM. Defaults to spotify (True)
 USE_SPOTIFY = True
 
